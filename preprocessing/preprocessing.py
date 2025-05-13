@@ -19,13 +19,23 @@ class IMAGE:
             self.mean, self.std = self.norm_parameters()
 
     
-    
     def img_loading(self):
-        read_img = cv2.imread(self.img_path, cv2.IMREAD_GRAYSCALE)
-        if read_img is not None:
-            return read_img
-        else:
-            print(f"The img is NOT valid:\n{self.img_path}")
+            # Try to handle special characters in path
+        try:
+            read_img = cv2.imread(self.img_path, cv2.IMREAD_GRAYSCALE)
+            if read_img is not None:
+                return read_img
+            else:
+                print(f"The img is NOT valid:\n{self.img_path}")
+                # Try using cv2.samples.findFile for better path handling
+                alt_path = cv2.samples.findFile(self.img_path)
+                if alt_path:
+                    read_img = cv2.imread(alt_path, cv2.IMREAD_GRAYSCALE)
+                    if read_img is not None:
+                        return read_img
+                return None
+        except Exception as e:
+            print(f"Error loading image {self.img_path}: {e}")
             return None
 
 
