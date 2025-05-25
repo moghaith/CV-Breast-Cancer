@@ -93,7 +93,7 @@ gr.Interface(fn=classify_image,
              outputs=gr.Label(num_top_classes=3)).launch()
 ```
 
-🔗 [View Live Space](https://huggingface.co/spaces/your-username/your-space-name) *(replace with your URL)*
+🔗 [View Live Space](https://huggingface.co/spaces/moghaith/breastcancerclassify)
 
 ---
 
